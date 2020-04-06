@@ -1,15 +1,15 @@
 import java.util.Arrays;
 public class newSorting {
-    public static void main(String[] args) {
+    public static void main(String [] args){
         int[] A = {3, 10, 1, 5, 2, 7, 4, 9, 8};
         int size = 4;
-        newSorting(A, 4);
+        newSorting(A,size);
     }
-
     public static void newSorting(int[] A, int size) {
-        int low = 0;
-        int high = A.length - 1;
-        if (A.length < size) {
+        if (A.length <= size) {
+            int low = 0;
+            int high = A.length - 1;
+
             quickSort(A, low, high);
         }
         else {
@@ -22,11 +22,9 @@ public class newSorting {
                 C[i] = A[i + B.length];
             }
 
-            System.out.println(Arrays.toString(B));
-            System.out.println(Arrays.toString(C));
             newSorting(B, size);
             newSorting(C, size);
-            mergeSortedHalves(B, C);
+            mergeSortedHalves(A, B, C);
         }
     }
 
@@ -41,6 +39,7 @@ public class newSorting {
     }
 
     public static int partition(int[] A, int low, int high) {
+        // using the first position as
         int i = low;
         int pivot = A[low];
         for (int j = low + 1 ; j <= high ; j++) {
@@ -57,32 +56,30 @@ public class newSorting {
         return i;
     }
 
-    public static int[] mergeSortedHalves(int[] A, int[] B) {
-        int[] C = new int[A.length + B.length];
+    public static void mergeSortedHalves(int[] A, int[] B, int [] C) {
         int i = 0;
         int j = 0;
         int k = 0;
-        while (i < A.length && j < B.length) {
-            if (A[i] < B[j]) {
-                C[k] = A[i];
+        while (i < B.length && j < C.length) {
+            if (B[i] < A[j]) {
+                A[k] = B[i];
                 i++;
             } else {
-                C[k] = B[j];
+                A[k] = C[j];
                 j++;
             }
             k++;
         }
-        while (i < A.length) {
-            C[k] = A[i];
+        while (i < B.length) {
+            A[k] = B[i];
             i++;
             k++;
         }
-        while (j < B.length) {
-            C[k] = B[j];
+        while (j < C.length) {
+            A[k] = C[j];
             j++;
             k++;
         }
-        System.out.println(Arrays.toString(C));
-        return C;
+        System.out.println(Arrays.toString(A));
     }
 }
