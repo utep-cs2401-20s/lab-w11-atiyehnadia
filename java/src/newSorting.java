@@ -1,10 +1,5 @@
 import java.util.Arrays;
 public class newSorting {
-    public static void main(String [] args){
-        int[] A = {3, 10, 1, 5, 2, 7, 4, 9, 8};
-        int size = 4;
-        newSorting(A,size);
-    }
     public static void newSorting(int[] A, int size) {
         if (A.length <= size) {
             int low = 0;
@@ -61,7 +56,7 @@ public class newSorting {
         int j = 0;
         int k = 0;
         while (i < B.length && j < C.length) {
-            if (B[i] < A[j]) {
+            if (B[i] < C[j]) {
                 A[k] = B[i];
                 i++;
             } else {
@@ -80,6 +75,6 @@ public class newSorting {
             j++;
             k++;
         }
-        System.out.println(Arrays.toString(A));
     }
+
 }
